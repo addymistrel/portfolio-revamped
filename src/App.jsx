@@ -1,4 +1,4 @@
-import { Navbar, Welcome } from "#components/index";
+import { Navbar, Welcome } from "#components";
 
 const App = () => {
   return (
