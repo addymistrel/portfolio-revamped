@@ -58,8 +58,9 @@ const Welcome = () => {
   const subtitleRef = useRef(null);
 
   useGSAP(() => {
-    const titleCleanup = setupTextHover(titleRef.current, "title");
-    const subtitleCleanup = setupTextHover(subtitleRef.current, "subtitle");
+    const titleCleanup = () => setupTextHover(titleRef.current, "title");
+    const subtitleCleanup = () =>
+      setupTextHover(subtitleRef.current, "subtitle");
 
     return () => {
       titleCleanup();
