@@ -96,21 +96,33 @@ body {
         @apply object-cover object-center;
       }
     }
+
+    .dock-indicator {
+      @apply absolute -bottom-1 size-1 rounded-full bg-white/80;
+    }
   }
 
   #window-controls {
     @apply flex gap-2;
 
+    .control-icon {
+      @apply opacity-0 text-black/60 transition-opacity duration-150;
+    }
+
+    &:hover .control-icon {
+      @apply opacity-100;
+    }
+
     .close {
-      @apply size-3.5 rounded-full bg-[#ff6157] cursor-pointer;
+      @apply size-3.5 rounded-full bg-[#ff6157] cursor-pointer flex-center;
     }
 
     .minimize {
-      @apply size-3.5 rounded-full bg-[#ffc030];
+      @apply size-3.5 rounded-full bg-[#ffc030] cursor-pointer flex-center;
     }
 
     .maximize {
-      @apply size-3.5 rounded-full bg-[#2acb42];
+      @apply size-3.5 rounded-full bg-[#2acb42] cursor-pointer flex-center;
     }
   }
 

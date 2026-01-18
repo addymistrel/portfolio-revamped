@@ -4,8 +4,11 @@ import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
 
 import { dockApps } from "#constants";
+import useWindowStore from "#store/window";
 
 const Dock = () => {
+  const { openWindow, minimizeWindow, restoreWindow, windows } =
+    useWindowStore();
   const dockRef = useRef(null);
 
   useGSAP(() => {
@@ -57,32 +60,60 @@ const Dock = () => {
     };
   }, []);
 
-  const toggleApp = (app) => {};
+  const handleDockClick = (app) => {
+    if (!app.canOpen) return;
+
+    const window = windows[app.id];
+
+    if (!window) {
+      console.error(`No window found for app ID: ${app.id}`);
+      return;
+    }
+
+    if (window.isOpen) {
+      if (window.isMinimized) {
+        // Restore from minimized state
+        restoreWindow(app.id);
+      } else {
+        // Minimize if already open and visible (toggle behavior like macOS)
+        minimizeWindow(app.id);
+      }
+    } else {
+      openWindow(app.id);
+    }
+  };
 
   return (
     <section id="dock">
       <div ref={dockRef} className="dock-container">
-        {dockApps.map(({ id, name, icon, canOpen }) => (
-          <div key={id} className="relative flex justify-center">
-            <button
-              type="button"
-              className="dock-icon"
-              aria-label={name}
-              data-tooltip-id="dock-tooltip"
-              data-tooltip-content={name}
-              data-tooltip-delay-show={150}
-              disabled={!canOpen}
-              onClick={() => toggleApp({ id, canOpen })}
-            >
-              <img
-                src={`/images/${icon}`}
-                alt={`${name}-icon`}
-                loading="lazy"
-                className={canOpen ? "" : "opacity-60"}
-              />
-            </button>
-          </div>
-        ))}
+        {dockApps.map(({ id, name, icon, canOpen }) => {
+          const window = windows[id];
+          const isActive = window?.isOpen;
+
+          return (
+            <div key={id} className="relative flex flex-col items-center">
+              <button
+                type="button"
+                className="dock-icon"
+                aria-label={name}
+                data-tooltip-id="dock-tooltip"
+                data-tooltip-content={name}
+                data-tooltip-delay-show={150}
+                disabled={!canOpen}
+                onClick={() => handleDockClick({ id, canOpen })}
+              >
+                <img
+                  src={`/images/${icon}`}
+                  alt={`${name}-icon`}
+                  loading="lazy"
+                  className={canOpen ? "" : "opacity-60"}
+                />
+              </button>
+              {/* Active indicator dot */}
+              {isActive && <span className="dock-indicator" />}
+            </div>
+          );
+        })}
         <Tooltip id="dock-tooltip" place="top" className="tooltip" />
       </div>
     </section>
