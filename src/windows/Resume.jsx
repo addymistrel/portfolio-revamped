@@ -6,8 +6,8 @@ import { useState } from "react";
 
 const Resume = ({ windowKey }) => {
   const [isLoading, setIsLoading] = useState(true);
-  const { windows } = useWindowStore();
-  const { isMaximized } = windows[windowKey];
+  const { currentWindowVal } = useWindowStore();
+  const { isMaximized } = currentWindowVal(windowKey);
 
   // Different zoom levels for normal and maximized views
   const zoomLevel = isMaximized ? 100 : 75;
