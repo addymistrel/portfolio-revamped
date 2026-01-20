@@ -1,7 +1,7 @@
 import useWindowStore from "#store/window";
 import { X, Minus, Maximize, Minimize, Circle } from "lucide-react";
 
-const WindowControls = ({ windowKey }) => {
+const WindowControls = ({ windowKey, showMinMax = true }) => {
   const {
     closeWindow,
     minimizeWindow,
@@ -16,16 +16,23 @@ const WindowControls = ({ windowKey }) => {
       <div className="close" onClick={() => closeWindow(windowKey)}>
         <X className="control-icon" size={15} strokeWidth={2.5} />
       </div>
-      <div className="minimize" onClick={() => minimizeWindow(windowKey)}>
-        <Minus className="control-icon" size={15} strokeWidth={2.5} />
-      </div>
-      <div className="maximize" onClick={() => toggleMaximizeWindow(windowKey)}>
-        {isMaximized ? (
-          <Minimize className="control-icon" size={15} strokeWidth={2.5} />
-        ) : (
-          <Maximize className="control-icon" size={15} strokeWidth={2.5} />
-        )}
-      </div>
+      {showMinMax && (
+        <>
+          <div className="minimize" onClick={() => minimizeWindow(windowKey)}>
+            <Minus className="control-icon" size={15} strokeWidth={2.5} />
+          </div>
+          <div
+            className="maximize"
+            onClick={() => toggleMaximizeWindow(windowKey)}
+          >
+            {isMaximized ? (
+              <Minimize className="control-icon" size={15} strokeWidth={2.5} />
+            ) : (
+              <Maximize className="control-icon" size={15} strokeWidth={2.5} />
+            )}
+          </div>
+        </>
+      )}
     </div>
   );
 };

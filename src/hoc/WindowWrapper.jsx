@@ -3,10 +3,11 @@ import useWindowStore from "#store/window";
 import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
 import { Draggable } from "gsap/Draggable";
+import { X } from "lucide-react";
 
 const WindowWrapper = (Component, windowKey) => {
   const Wrapped = (props) => {
-    const { focusWindow, windows } = useWindowStore();
+    const { focusWindow, closeWindow, windows } = useWindowStore();
     const { isOpen, isMinimized, isMaximized, zIndex } = windows[windowKey];
     const ref = useRef(null);
     const prevOpenRef = useRef(false);
@@ -185,6 +186,14 @@ const WindowWrapper = (Component, windowKey) => {
     return (
       <section id={windowKey} ref={ref} style={{ zIndex }} className="absolute">
         <Component {...props} windowKey={windowKey} />
+        <button
+          onClick={() => closeWindow(windowKey)}
+          className="bottom-close-btn"
+          title="Close"
+        >
+          <X size={16} strokeWidth={2.5} />
+          <span>Close</span>
+        </button>
       </section>
     );
   };
