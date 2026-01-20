@@ -8,6 +8,7 @@ import {
   Markdown,
   Image,
   Contact,
+  Photos,
 } from "#windows";
 import gsap from "gsap";
 import { Draggable } from "gsap/Draggable";
@@ -29,6 +30,7 @@ const App = () => {
       <Markdown />
       <Image />
       <Contact />
+      <Photos />
       <Home />
     </main>
   );
