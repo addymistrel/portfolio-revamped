@@ -9,9 +9,11 @@ import {
     immer
 } from 'zustand/middleware/immer';
 
-const useWindowStore = create(immer((set) => ({
+const useWindowStore = create(immer((set, get) => ({
     windows: WINDOW_CONFIG,
     nextZIndex: INITIAL_Z_INDEX + 1,
+
+    currentWindowVal: (windowKey) => get().windows[windowKey],
 
     openWindow: (windowKey, data = null) => set((state) => {
         const win = state.windows[windowKey];

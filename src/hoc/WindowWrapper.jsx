@@ -13,6 +13,7 @@ const WindowWrapper = (Component, windowKey) => {
     const prevMinimizedRef = useRef(false);
     const prevMaximizedRef = useRef(false);
     const savedPositionRef = useRef({
+      transform: null,
       top: null,
       left: null,
       width: null,
@@ -20,12 +21,12 @@ const WindowWrapper = (Component, windowKey) => {
     });
 
     // Handle open animation (Mac-like bounce effect)
-    useGSAP(() => {
+    useLayoutEffect(() => {
       const el = ref.current;
-      if (!el) return;
+      if (!el || !isOpen) return;
 
-      // Opening animation
-      if (isOpen && !prevOpenRef.current) {
+      // Only animate on first open (not on subsequent re-renders)
+      if (!prevOpenRef.current) {
         el.style.display = "block";
         el.style.transformOrigin = "center bottom";
 
@@ -99,12 +100,28 @@ const WindowWrapper = (Component, windowKey) => {
       if (isMaximized && !prevMaximizedRef.current) {
         // Save current position before maximizing
         const rect = el.getBoundingClientRect();
+        const computedStyle = window.getComputedStyle(el);
+
         savedPositionRef.current = {
+          transform: el.style.transform || "",
           top: rect.top,
           left: rect.left,
           width: rect.width,
           height: rect.height,
+          cssTop: computedStyle.top,
+          cssLeft: computedStyle.left,
+          cssWidth: computedStyle.width,
+          cssHeight: computedStyle.height,
         };
+
+        // Set initial position explicitly before animating
+        gsap.set(el, {
+          top: rect.top,
+          left: rect.left,
+          width: rect.width,
+          height: rect.height,
+          transform: "none",
+        });
 
         // Animate to fullscreen
         gsap.to(el, {
@@ -114,26 +131,25 @@ const WindowWrapper = (Component, windowKey) => {
           height: "100vh",
           duration: 0.35,
           ease: "power2.inOut",
-          onStart: () => {
-            el.style.transform = "none";
-          },
         });
       } else if (!isMaximized && prevMaximizedRef.current) {
         // Restore to saved position
         const saved = savedPositionRef.current;
+
         gsap.to(el, {
-          top: saved.top || "",
-          left: saved.left || "",
-          width: saved.width || "",
-          height: saved.height || "",
+          top: saved.top,
+          left: saved.left,
+          width: saved.width,
+          height: saved.height,
           duration: 0.35,
           ease: "power2.inOut",
           onComplete: () => {
-            // Clear inline styles after animation
-            el.style.top = "";
-            el.style.left = "";
-            el.style.width = "";
-            el.style.height = "";
+            // Clear inline styles and restore CSS positioning
+            gsap.set(el, { clearProps: "top,left,width,height" });
+            // Restore the transform from dragging if any
+            if (saved.transform) {
+              el.style.transform = saved.transform;
+            }
           },
         });
       }
