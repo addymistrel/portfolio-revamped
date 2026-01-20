@@ -6,6 +6,7 @@ import Text from "#windows/Text";
 import Markdown from "#windows/Markdown";
 import Image from "#windows/Image";
 import Contact from "#windows/Contact";
+import Photos from "#windows/Photos";
 
 export {
     Terminal,
@@ -15,5 +16,6 @@ export {
     Text,
     Markdown,
     Image,
-    Contact
+    Contact,
+    Photos
 }

@@ -37,7 +37,7 @@ const Resume = ({ windowKey }) => {
         <iframe
           src={`files/resume.pdf#zoom=${zoomLevel}`}
           title="Resume"
-          className="w-full h-full border-none"
+          className={`w-full ${!isMaximized ? "min-h-117.5" : "min-h-192.5"} h-full border-none`}
           onLoad={() => setIsLoading(false)}
         />
       </div>

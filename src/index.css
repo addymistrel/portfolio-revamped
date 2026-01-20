@@ -131,7 +131,8 @@ body {
   }
 
   .window-content {
-    @apply flex-1;
+    flex: 1;
+    min-height: calc(100% - 5vh);
   }
 
   .window-footer {
@@ -269,10 +270,16 @@ body {
   }
 
   #photos {
-    @apply max-w-3xl absolute top-96 left-1/2 -translate-y-1/2 bg-white shadow-2xl drop-shadow-2xl rounded-xl overflow-hidden;
+    @apply max-w-4xl h-[500px] absolute top-40 left-1/4 bg-white shadow-2xl drop-shadow-2xl rounded-xl overflow-hidden;
+
+    #window-header {
+      h2 {
+        @apply font-bold text-sm text-center flex-1;
+      }
+    }
 
     .sidebar {
-      @apply w-3/12 flex-none bg-gray-50 border-r border-gray-200 flex flex-col p-5;
+      @apply w-48 flex-none bg-gray-50 border-r border-gray-200 flex flex-col p-5;
 
       h2 {
         @apply text-xs font-medium text-gray-400 mb-1;
@@ -280,9 +287,9 @@ body {
 
       ul {
         li {
-          @apply flex space-y-1 items-center gap-2 px-3 py-2 rounded-md cursor-pointer transition-colors;
+          @apply flex items-center gap-2 px-3 py-2 rounded-md cursor-pointer transition-colors text-gray-700 hover:bg-gray-200;
 
-          &:first-child {
+          &.active {
             @apply bg-blue-100 text-blue-700;
           }
 
@@ -298,30 +305,24 @@ body {
     }
 
     .gallery {
-      @apply p-5;
+      @apply flex-1 p-5 overflow-y-auto;
 
       ul {
-        @apply grid grid-cols-5 grid-rows-5 gap-2.5;
+        @apply grid grid-cols-3 gap-4;
 
         li {
+          @apply cursor-pointer relative overflow-hidden rounded-lg;
+
           img {
-            @apply size-full object-cover rounded-lg;
+            @apply w-full h-40 object-cover rounded-lg transition-transform duration-300;
           }
 
-          &:first-child {
-            @apply row-start-1 row-span-3 col-start-1 col-span-3;
+          span {
+            @apply absolute bottom-0 left-0 right-0 bg-black/60 text-white text-xs p-2 text-center;
           }
 
-          &:nth-child(2) {
-            @apply row-start-1 row-span-3 col-start-4 col-span-2;
-          }
-
-          &:nth-child(3) {
-            @apply row-start-4 row-span-2 col-start-3 col-span-3;
-          }
-
-          &:last-child {
-            @apply row-start-4 row-span-2 col-start-1 col-span-2;
+          &:hover img {
+            @apply scale-105;
           }
         }
       }

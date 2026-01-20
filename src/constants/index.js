@@ -67,7 +67,7 @@ const dockApps = [{
         id: "trash",
         name: "Archive", // was "Trash"
         icon: "trash.png",
-        canOpen: false,
+        canOpen: true,
     },
 ];
 
@@ -152,46 +152,65 @@ const socials = [{
 
 const photosLinks = [{
         id: 1,
-        icon: "/icons/gicon1.svg",
-        title: "Library",
+        icon: "/icons/gicon2.svg",
+        title: "Certifications",
+        filter: "certification",
     },
     {
         id: 2,
-        icon: "/icons/gicon2.svg",
-        title: "Memories",
-    },
-    {
-        id: 3,
-        icon: "/icons/file.svg",
-        title: "Places",
-    },
-    {
-        id: 4,
         icon: "/icons/gicon4.svg",
-        title: "People",
-    },
-    {
-        id: 5,
-        icon: "/icons/gicon5.svg",
-        title: "Favorites",
+        title: "Achievements",
+        filter: "achievement",
     },
 ];
 
 const gallery = [{
         id: 1,
         img: "/images/gal1.png",
+        title: "AWS Cloud Practitioner",
+        category: "certification",
     },
     {
         id: 2,
         img: "/images/gal2.png",
+        title: "Google Professional Cloud Developer",
+        category: "certification",
     },
     {
         id: 3,
         img: "/images/gal3.png",
+        title: "Meta Frontend Developer",
+        category: "certification",
     },
     {
         id: 4,
         img: "/images/gal4.png",
+        title: "MongoDB Associate Developer",
+        category: "certification",
+    },
+    {
+        id: 5,
+        img: "/images/gal1.png",
+        title: "Hackathon Winner 2024",
+        category: "achievement",
+    },
+    {
+        id: 6,
+        img: "/images/gal2.png",
+        title: "Open Source Contributor Award",
+        category: "achievement",
+    },
+    {
+        id: 7,
+        img: "/images/gal3.png",
+        title: "Best Developer of the Year",
+        category: "achievement",
+    },
+    {
+        id: 8,
+        img: "/images/gal4.png",
+        title: "Tech Conference Speaker",
+        category: "achievement",
     },
 ];
 
@@ -443,7 +462,7 @@ const RESUME_LOCATION = {
 const TRASH_LOCATION = {
     id: 4,
     type: "trash",
-    name: "Trash",
+    name: "Archive",
     icon: "/icons/trash.svg",
     kind: "folder",
     children: [{
