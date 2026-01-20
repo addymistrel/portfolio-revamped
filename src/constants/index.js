@@ -67,7 +67,7 @@ const dockApps = [{
         id: "trash",
         name: "Archive", // was "Trash"
         icon: "trash.png",
-        canOpen: false,
+        canOpen: true,
     },
 ];
 
@@ -443,7 +443,7 @@ const RESUME_LOCATION = {
 const TRASH_LOCATION = {
     id: 4,
     type: "trash",
-    name: "Trash",
+    name: "Archive",
     icon: "/icons/trash.svg",
     kind: "folder",
     children: [{

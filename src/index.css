@@ -131,7 +131,8 @@ body {
   }
 
   .window-content {
-    @apply flex-1;
+    flex: 1;
+    min-height: calc(100% - 5vh);
   }
 
   .window-footer {
