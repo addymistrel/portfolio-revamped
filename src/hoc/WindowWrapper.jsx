@@ -184,16 +184,25 @@ const WindowWrapper = (Component, windowKey) => {
     if (!isOpen) return null;
 
     return (
-      <section id={windowKey} ref={ref} style={{ zIndex }} className="absolute">
-        <Component {...props} windowKey={windowKey} />
-        <button
-          onClick={() => closeWindow(windowKey)}
-          className="bottom-close-btn"
-          title="Close"
-        >
-          <X size={16} strokeWidth={2.5} />
-          <span>Close</span>
-        </button>
+      <section
+        id={windowKey}
+        ref={ref}
+        style={{ zIndex }}
+        className="absolute window-container"
+      >
+        <div className="window-content">
+          <Component {...props} windowKey={windowKey} />
+        </div>
+        <div className="window-footer">
+          <button
+            onClick={() => closeWindow(windowKey)}
+            className="bottom-close-btn"
+            title="Close"
+          >
+            <X size={16} strokeWidth={2.5} />
+            <span>Close</span>
+          </button>
+        </div>
       </section>
     );
   };

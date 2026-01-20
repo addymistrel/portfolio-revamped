@@ -126,8 +126,20 @@ body {
     }
   }
 
+  .window-container {
+    @apply flex flex-col;
+  }
+
+  .window-content {
+    @apply flex-1;
+  }
+
+  .window-footer {
+    @apply flex justify-end px-3 py-2 bg-gray-100 border-t border-gray-200 rounded-b-xl;
+  }
+
   .bottom-close-btn {
-    @apply absolute bottom-3 right-3 flex items-center gap-1.5 px-3 py-1.5 bg-gray-100 hover:bg-gray-200 text-gray-600 hover:text-gray-800 rounded-lg text-xs font-medium transition-all cursor-pointer border border-gray-200 shadow-sm;
+    @apply flex items-center gap-1.5 px-3 py-1.5 bg-white hover:bg-gray-50 text-gray-600 hover:text-gray-800 rounded-lg text-xs font-medium transition-all cursor-pointer border border-gray-300 shadow-sm;
 
     svg {
       @apply size-3.5;
@@ -323,10 +335,6 @@ body {
       h2 {
         @apply font-bold text-sm text-center flex-1;
       }
-    }
-
-    .resume-content {
-      @apply min-h-0;
     }
   }
 

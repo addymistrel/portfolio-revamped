@@ -5,6 +5,7 @@ import Finder from "#windows/Finder";
 import Text from "#windows/Text";
 import Markdown from "#windows/Markdown";
 import Image from "#windows/Image";
+import Contact from "#windows/Contact";
 
 export {
     Terminal,
@@ -13,5 +14,6 @@ export {
     Finder,
     Text,
     Markdown,
-    Image
+    Image,
+    Contact
 }

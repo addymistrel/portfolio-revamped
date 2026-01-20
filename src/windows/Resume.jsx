@@ -28,7 +28,7 @@ const Resume = ({ windowKey }) => {
         </a>
       </div>
 
-      <div className="resume-content relative flex-1">
+      <div className="relative flex-1">
         {isLoading && (
           <div className="absolute inset-0 flex-center bg-white">
             <Loader2 className="size-8 animate-spin text-gray-400" />
