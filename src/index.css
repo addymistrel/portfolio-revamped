@@ -79,7 +79,7 @@ body {
   }
 
   #dock {
-    @apply absolute bottom-5 left-1/2 -translate-x-1/2 z-50 select-none max-sm:hidden;
+    @apply absolute bottom-5 left-1/2 -translate-x-1/2 z-10000 select-none max-sm:hidden;
 
     .dock-container {
       @apply bg-white/20 backdrop-blur-md justify-between rounded-2xl p-1.5 flex items-end gap-1.5;
@@ -114,20 +114,20 @@ body {
     }
 
     .close {
-      @apply size-3.5 rounded-full bg-[#ff6157] cursor-pointer flex-center;
+      @apply size-5.5 rounded-full bg-[#ff6157] cursor-pointer flex-center;
     }
 
     .minimize {
-      @apply size-3.5 rounded-full bg-[#ffc030] cursor-pointer flex-center;
+      @apply size-5.5 rounded-full bg-[#ffc030] cursor-pointer flex-center;
     }
 
     .maximize {
-      @apply size-3.5 rounded-full bg-[#2acb42] cursor-pointer flex-center;
+      @apply size-5.5 rounded-full bg-[#2acb42] cursor-pointer flex-center;
     }
   }
 
   #window-header {
-    @apply flex items-center justify-between px-4 py-3 rounded-t-lg bg-gray-50 border-b border-gray-200 select-none text-sm text-gray-400;
+    @apply flex items-center justify-between px-4 py-3 rounded-t-lg bg-gray-400 border-b border-gray-200 select-none text-sm text-gray-700;
   }
 
   #safari {
@@ -309,12 +309,16 @@ body {
   }
 
   #resume {
-    @apply w-fit h-fit absolute top-16 left-7/12 bg-white shadow-2xl drop-shadow-2xl rounded-xl overflow-hidden;
+    @apply w-180 h-140 absolute top-16 left-4/12 bg-white shadow-2xl drop-shadow-2xl rounded-xl overflow-hidden;
 
     #window-header {
       h2 {
         @apply font-bold text-sm text-center flex-1;
       }
+    }
+
+    .resume-content {
+      @apply min-h-0;
     }
   }
 
